@@ -1454,7 +1454,7 @@ Ext.onReady(function() {
 					        	srsName: "EPSG:2180",
 					        	url: "http://127.0.0.1:8081/geoserver/wfs",
 					        	featureType: "dzialki",
-					        	featureNS: "RODGLIWICE"
+					        	featureNS: "RODPOZNAN"
 				      	}
 			    	),
 			    	isBaseLayer: false,
@@ -2219,7 +2219,7 @@ Ext.onReady(function() {
 					        	srsName: "EPSG:4326",
 					        	url: "http://127.0.0.1:8081/geoserver/wfs",
 					        	featureType: "zdjecia",
-					        	featureNS: "RODGLIWICE"
+					        	featureNS: "RODPOZNAN"
 				      	}
 			    	),
             eventListeners: {
@@ -4683,7 +4683,7 @@ function warDodatkowe(){
 						
     		if (_id.substr(0, 1) == 'o') {
     				_id = _id.substr(2);
-					
+					console.log(_id)
     				//wybieranie elementu o danym gid
     				for (fid in wfsOgrody.features) {
     						var feature = wfsOgrody.features[fid];
