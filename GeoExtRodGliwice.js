@@ -4687,9 +4687,9 @@ function warDodatkowe(){
     				//wybieranie elementu o danym gid
     				for (fid in wfsOgrody.features) {
     						var feature = wfsOgrody.features[fid];
-							//alert(feature.attributes);
+							console.log(feature.attributes);
     						var _gid = feature.attributes.gid;
-							//alert(_gid);
+							console.log(_gid);
 							//alert(_id);
     						if (_gid == _id) {
     								var bounds = feature.geometry.getBounds();
