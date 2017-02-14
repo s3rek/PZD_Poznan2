@@ -1,0 +1,112 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="ext/resources/css/ext-all.css"/>
+<link rel="stylesheet" type="text/css" href="ext/plugins/fileuploadfield.css"/>
+
+<script type="text/javascript" src="ext/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="ext/ext-all.js"></script>
+<script type="text/javascript" src="ext/plugins/FileUploadField.js"></script>
+
+<!-- start include awesomeuploader plugins -->
+<link rel="stylesheet" type="text/css" href="ext/plugins/awesomeuploader/Ext.ux.form.FileUploadField.css" />
+<link rel="stylesheet" type="text/css" href="ext/plugins/awesomeuploader/AwesomeUploader.css" />
+
+<script type="text/javascript" src="ext/plugins/awesomeuploader/Ext.ux.form.FileUploadField.js"></script>
+<script type="text/javascript" src="ext/plugins/awesomeuploader/Ext.ux.XHRUpload.js"></script>
+<script type="text/javascript" src="ext/plugins/awesomeuploader/swfupload.js"></script>
+<script type="text/javascript" src="ext/plugins/awesomeuploader/swfupload.swfobject.js"></script>
+<script type="text/javascript" src="ext/plugins/awesomeuploader/AwesomeUploader.js"></script>
+<!-- end include awesomeuploader plugins -->
+
+<script type="text/javascript">
+    Ext.onReady(function() {
+        var form1 = new Ext.FormPanel({
+            title: 'Multiple Upload With Default Uploader',
+            renderTo: 'div-form-1', width: 320, buttonAlign: 'center',
+            frame: true, fileUpload: true, style: 'margin: 0 auto;',
+            items: [{
+                xtype: 'fileuploadfield',
+                emptyText: '',
+                fieldLabel: 'File 1',
+                buttonText: 'Select a File',
+                name: 'ufile[]',
+                id: 'form-file-1'
+            }, {
+                xtype: 'fileuploadfield',
+                emptyText: '',
+                fieldLabel: 'File 2',
+                buttonText: 'Select a File',
+                name: 'ufile[]',
+                id: 'form-file-2'
+            }, {
+                xtype: 'fileuploadfield',
+                emptyText: '',
+                fieldLabel: 'File 3',
+                buttonText: 'Select a File',
+                name: 'ufile[]',
+                id: 'form-file-3'
+            }],
+            buttons: [{
+                text: 'Save',
+                handler: function() {
+                    form1.getForm().submit({
+                        url: 'upload.php',
+                        waitMsg: 'Sending Data',
+                        success: function(form, o) {
+                            alert(o.response.responseText);
+                        }
+                    });
+                }
+            }, {
+                text: 'Reset',
+                handler: function() {
+                    form1.getForm().reset();
+                }
+            }]
+        });
+
+        var awpath = 'ext/plugins/awesomeuploader/';
+
+        var AwesomeUploaderInstance1 = new AwesomeUploader({
+            title: 'Ext JS Awesome Uploader Extension',
+            renderTo: 'div-upload-1',
+            flashSwfUploadPath: awpath + 'swfupload.swf',
+            flashUploadUrl: 'awesomeuploader.php',
+            flashButtonSprite: awpath + 'swfupload_browse_button_trans_56x22.png',
+            iconStatusAborted: awpath + 'cross.png',
+            iconStatusDone: awpath + 'tick.png',
+            iconsStatusError: awpath + 'cross.png',
+            iconStatusPending: awpath + 'hourglass.png',
+            iconStatusSending: awpath + 'loading.gif',
+            standarUploadUrl: 'awesomeuploader.php',
+            xhrUploadUrl: 'awesomeuploader-xhr.php',
+            gridHeight: 100,
+            frame: true,
+            width: 433,
+            height: 170,
+            style: 'margin: 0 auto;'
+        });
+    });
+</script>
+
+<style type="text/css">
+    #div-form-1, #div-upload-1 {
+        background: #e3e3e3;
+        padding: 20px;
+        margin: 20px;
+    }
+</style>
+
+<title>ExtJS Uploader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+  <div id="div-form-1"></div>
+  <div id="div-upload-1"></div>
+</body>
+</html>

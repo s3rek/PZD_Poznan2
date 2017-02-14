@@ -1,0 +1,21 @@
+<?php
+
+
+
+$str_to = "HH";
+
+//for($y=0;$y<count($tab_name);$y++){
+//	echo $tab_name[$y];
+//	echo "<BR>";
+//$str_to = $str_to."|".trim($tab_name[$y]);
+//$str_to = trim($str_to);
+
+if($_COOKIE['podwarstwy']){
+	$str_to = $_COOKIE['podwarstwy'].$str_to."*";
+	setcookie("podwarstwy", $str_to, time()+9000, "/", "");
+}else{
+	$str_to = $str_to."*";
+	setcookie("podwarstwy", $str_to, time()+9000, "/", "");
+}
+echo "{success: true, message: 'iop'}";
+?>

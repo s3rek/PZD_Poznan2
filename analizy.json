@@ -1,0 +1,54 @@
+﻿[
+	{
+		id:1,
+		itemid: "panel-wolnych-dzialek",
+		text:"Pokaż wolne działki",
+		akcja:"analizaWolnychDzialek",
+		leaf:true
+	},
+	{
+		id:2,
+		itemid: "panel-niewymiarowych-dzialek",
+		text:"Pokaż działki niewymiarowe",
+		akcja:"analizaNiewymiarowychDzialek",
+		leaf:true
+	},
+	{
+		id:3,
+		itemid: "panel-dokumentow",
+		text:"Pokaż dokumenty dla ogrodu",
+		akcja:"analizaPokazDokumenty",
+		leaf:true
+	},
+	
+	{
+		id:4,
+		itemid: "panel-wlascicieli-pdf",
+		text:"Generuj PDF z listą użytkowników działek",
+		akcja:"analizaWlascicieleDzialekPDF",
+		leaf:true
+	},
+	{
+		id:5,
+		itemid: "panel-wlascicieli-excel",
+		text:"Generuj XLS z listą użytkowników działek",
+		akcja:"analizaWlascicieleDzialekExcel",
+		leaf:true
+	},	
+	{
+		id:6,
+		itemid: "panel-wlascicieli2",
+		text:"Pokaż	listę użytkowników działek ogrodu",
+		akcja:"analizaWlascicieleDzialek2",
+		leaf:true
+	},	
+	{
+		id:7,
+		itemid: "panel-pozostale-dokumenty",
+		text:"Pokaż pozostałe dokumenty",
+		akcja:"analizaPozostaleDokumenty",
+		leaf:true
+	}
+	
+	
+]

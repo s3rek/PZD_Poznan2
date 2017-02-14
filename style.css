@@ -1,0 +1,295 @@
+.olLayerGooglePoweredBy.olLayerGoogleV3.gmnoprint {
+visibility:hidden;
+}
+
+#loading-mask {
+		position: absolute;
+		left:     0;
+		top:      0;
+		width:    100%;
+		height:   100%;
+		z-index:  20000;
+		background-color: #D8D8D8;
+} 
+#loading {
+		position: absolute;
+		left:     50%;
+		top:      50%;
+		padding:  2px;
+		z-index:  20001;
+		height:   auto;
+		margin:   -35px 0 0 -30px;
+}
+#loading .loading-indicator {
+		background: url(ikony/loading.gif) no-repeat;
+		background-position: 7% 50%;
+		background-color:#FFFFFF;
+		color:      #555;
+		font:       bold 13px tahoma,arial,helvetica;
+		padding:    8px 42px;
+		margin:     0;
+		text-align: center;
+		height:     auto;
+		border: 1px solid #000000;		
+}
+#popup-atrybuty-ie {
+		width: 250;
+}
+.wms-icon {
+		background-image: url(ikony/wms.png) !important;
+}
+.shp-icon {
+		background-image: url(ikony/layer-new.png) !important;
+}
+.kml-icon {
+		background-image: url(ikony/kml.gif) !important;
+}
+.camera-icon {
+		background-image: url(ikony/camera.png) !important;
+}
+.del-icon {
+		background-image: url(ikony/delete.png) !important;
+}
+.point-icon {
+		background-image: url(ikony/point-create.png) !important;
+}
+.line-icon {
+		background-image: url(ikony/line-create.png) !important;
+}
+.poly-icon {
+		background-image: url(ikony/polygon-create.png) !important;
+}
+.warstwy-icon {
+		background-image: url(ikony/warstwy.gif) !important;
+		background-repeat: no-repeat;
+		padding: 1px !important;
+		margin: 0px 5px 0px 0px !important;
+}
+.do-icon {
+		background-image: url(ikony/do.gif) !important;
+		background-repeat: no-repeat;
+		padding: 1px !important;
+		margin: 0px 5px 0px 0px !important;
+}
+.mo-icon {
+		background-image: url(ikony/mo.gif) !important;
+		background-repeat: no-repeat;
+		padding: 1px !important;
+		margin: 0px 5px 0px 0px !important;
+}
+.analysis-icon {
+		background-image: url(ikony/analysis.gif) !important;
+		background-repeat: no-repeat;
+		padding: 1px !important;
+		margin: 0px 5px 0px 0px !important;
+}
+.tools-icon{
+		background-image: url(ikony/tools.png) !important;
+}
+.upload-icon{
+		background-image: url(ikony/upload-icon.png) !important;
+}
+.logout-icon {
+		background-image: url(ikony/unlock.png) !important;
+}
+.login-icon {
+		background-image: url(ikony/lock.png) !important;
+}
+.print-icon {
+		background-image: url(ikony/print.png) !important;
+}
+.length-measure-icon {
+		background-image: url(ikony/length-measure.png) !important;
+}
+.area-measure-icon {
+		background-image: url(ikony/area-measure.png) !important;
+}
+.pan-icon {
+		background-image: url(ikony/pan.png) !important;
+}
+.select-icon {
+		background-image: url(ikony/select.png) !important;
+}
+.zoom-in-icon {
+		background-image: url(ikony/zoom-in.png) !important;
+}
+.zoom-out-icon {
+		background-image: url(ikony/zoom-out.png) !important;
+}
+.help-icon {
+		background-image: url(ikony/help.png) !important;
+}
+#pomoc {
+    background-color: transparent;	
+}
+#pomoc p {
+		padding-top: 20px;
+    border-top: 1px solid #fcb100;
+}
+
+
+
+
+
+
+//.legend {
+//		padding-left: 32px;
+//		position: relative;
+//		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+//		filter: alpha(opacity=50);
+//		-moz-opacity:0.5;
+//		-khtml-opacity: 0.5;
+//	  opacity: 0.5;
+//}
+//.x-tree-node-el {
+//		border-bottom: 1px solid #ddd;
+//		padding-bottom: 3px;
+//}
+//.x-tree-ec-icon {
+//		width: 3px;
+//}
+
+//.gx-tree-layer-icon {
+//		display: none;
+//}       
+
+
+
+
+
+
+#lightbox {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	bottom: 0;
+  	right: 0;
+  	background-color: #ffffff;
+  	opacity: 0.5;
+  	display: none;
+}
+
+.popupPanel {
+		white-space: pre-line;
+		font-family: monospace;
+  	background-color: #f8f8f8;
+  	background-image: url(ikonki/kwiatek.png);
+  	background-repeat: no-repeat;
+  	background-position: 100% 0%;
+  	overflow: auto;
+  	display: none;
+  	position: absolute;
+  	top: 30px;
+  	left: 30px;
+  	padding: 0px 20px 10px 20px;
+  	border: 2px solid #004080;
+  	-webkit-border-radius: 4px;
+  	-moz-border-radius: 4px;
+  	border-radius: 4px;
+}
+
+#grafika {
+		display: block;
+		top: 0px;
+		left: 0px;
+		padding: 0;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		background-position: 100% 100%;
+}
+
+.srcTitle {
+		font-family:sans-serif;
+		margin: 5px;
+}
+
+.closeIcon {
+  	width: 11px;
+  	height: 11px;
+  	position: absolute;
+  	right: 4px;
+  	top: 4px;
+  	cursor: pointer;
+}
+	
+.guzikwokienku{
+   	font-family:sans-serif;
+   	background-color:#FFFFFF;
+   	border-style:solid;
+   	border-color:#004080;
+}
+
+.guziczki {
+		margin: 5px;
+		z-index: 0;
+		position: absolute;
+		cursor: pointer;
+		left: 60px;
+		bottom: 0px;
+}
+
+.guzik {
+		direction: ltr; 
+		overflow: hidden; 
+		text-align: center; 
+		position: relative; 
+		color: white; 
+		font-family: Arial,sans-serif; 
+		-moz-user-select: none; 
+		font-size: 12px; 
+		background: rgb(109, 138, 204); 
+		line-height: 160%; 
+		padding: 0pt 6px; 
+		border-radius: 2px 0pt 0pt 2px; 
+		box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35); 
+		border: 1px solid rgb(103, 138, 199); 
+		font-weight: bold; 
+		min-width: 33px;	
+}
+
+.guzik:hover {
+		border-radius: 2px 0pt 0pt 2px; 
+		border: 1px solid rgb(0, 0, 0); 
+}
+
+.guzik:active {
+		color: black; 
+	  background: rgb(243, 243, 243);  
+		border-radius: 0pt 2px 2px 0pt;
+		border: 1px solid rgb(169, 187, 223); 
+		min-width: 40px;
+}
+
+.guzikKlik {
+		direction: ltr; 
+		overflow: hidden; 
+		text-align: center; 
+		position: relative;
+		color: black; 
+		font-family: Arial,sans-serif;
+		-moz-user-select: none;
+		font-size: 12px;
+	  background: rgb(243, 243, 243); 
+		line-height: 160%;
+	  padding: 0pt 6px; 
+		border-radius: 0pt 2px 2px 0pt;
+		box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+		border: 1px solid rgb(169, 187, 223); 
+	  font-weight: bold; 
+		min-width: 40px;
+}
+
+.guzikKlik:hover {
+		border-radius: 2px 2pt 2pt 2px; 
+		border: 1px solid rgb(0, 0, 0); 
+}
+
+.stopka {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-family: Arial,sans-serif;
+		font-size: 10px;
+		color: #C0C0C0;
+}

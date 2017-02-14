@@ -1,0 +1,5 @@
+<?php
+setcookie("layers", "Alex Porter", time()+3600);
+echo "{success: true, message: 'OKttt'}";
+//echo "OK";
+?>
