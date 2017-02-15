@@ -1994,7 +1994,9 @@ Ext.onReady(function() {
     });
  
  
- 
+		function encodeRFC5987ValueChars (str) {
+			return encodeURIComponent(str).replace(/['()]/g, escape).replace(/\*/g, '%2A').replace(/%(?:7C|60|5E)/g, unescape);
+		}
  
  
     
@@ -2007,13 +2009,13 @@ Ext.onReady(function() {
 						{name: 'powierzchnia', type: 'string'},
 						{name: 'ogrod', type: 'string'},
 						{name: 'miasto', type: 'string'},
-						{name: 'delegatura', type: 'string'}
+						//{name: 'delegatura', type: 'string'}
 				], proxy: new GeoExt.data.ProtocolProxy({
 						protocol: new OpenLayers.Protocol.HTTP({
 								url: "dajNiewymiarowe.php",
 								format: new OpenLayers.Format.GeoJSON(),
 								headers: {
-										//"Content-Type": "text/plain; charset=ISO-8859-2"
+										//"Content-Type": "text/plain; charset=WINDOWS-1250"
 								}
 						})
 				}), autoLoad: true
@@ -2045,12 +2047,13 @@ Ext.onReady(function() {
             width: 80,
             sortable: true,
             dataIndex: "miasto"
-        },{
-            header: "Delegatura",
-            width: 80,
-            sortable: true,
-            dataIndex: "delegatura"
-        }],
+        }//,{
+            //header: "Delegatura",
+            //width: 80,
+            //sortable: true,
+            //dataIndex: "delegatura"
+        //}
+		],
         listeners: {
         		rowclick: function(gridObj, rowIndex, eventObj) {
         				var record = gridObj.store.getAt(rowIndex);
