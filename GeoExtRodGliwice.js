@@ -1321,16 +1321,10 @@ Ext.onReady(function() {
 		var	um_wms = new OpenLayers.Layer.WMS
 		( 
 				"UM Gliwice", 
-				"http://msip-mapa.um.gliwice.pl/portal/isdp/scripts/isdp.dll/wms/1.3.0", 
+				"http://mapy.geoportal.gov.pl/wss/service/img/guest/ORTO/MapServer/WMSServer", 
 				{				
 						layers:	[								
-								'ulice',
-								'eg_dzialki',
-								'pkt_adr_auto',
-								'vec_gr_miasta',
-								'eg_budynki',
-								'eg_obreb',
-								'vec_osiedle'
+								 'ORTOFOTO'
 								
 						],
 						projection: new OpenLayers.Projection("EPSG:900913"),

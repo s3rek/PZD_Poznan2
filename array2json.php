@@ -1,6 +1,6 @@
 <?php
 function array2json($arr) {
-    //if(function_exists('json_encode')) return json_encode($arr); //Lastest versions of PHP already has this functionality.
+    if(function_exists('json_encode')) return json_encode($arr); //Lastest versions of PHP already has this functionality.
     $parts = array();
     $is_list = false;
 
