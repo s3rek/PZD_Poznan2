@@ -1,4 +1,7 @@
 ﻿<?php
+		$search  = array('Ą', 'Ć', 'Ę', 'Ł', 'Ń', 'Ó', 'Ś', 'Ź', 'Ż','ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż');
+		$replace = array('\\u0104', '\\u0106', '\\u0118', '\\u0141', '\\u0143', '\\u00d3', '\\u015a', '\\u0179', '\\u017b', '\\u0105', '\\u0107', '\\u0119', '\\u0142', '\\u0144', '\\u00f3', '\\u015b', '\\u017a', '\\u017c');
+
 		header('Content-type: text/plain; charset=iso-8859-2');
 		$conn = pg_connect("host=127.0.0.1 port=5432 dbname=PZD_ROD_Poznan user=postgres password=postgres");
 		if (!$conn) {
@@ -25,15 +28,13 @@
 				$arr[]=array(
 						"type" => "Feature",
 						"properties" 	=> array(
-								"numer" 				=> $row[0],
-								"powierzchnia" 	=> $row[1],
-								"ogrod" 				=> $row[2],
-								"miasto" 				=> str_replace('ń','\u0144',$row[3]),
+								"numer" 				=> str_replace($search, $replace, $row[0]),
+								"powierzchnia" 	=> str_replace($search, $replace, $row[1]),
+								"ogrod" 				=> str_replace($search, $replace, $row[2]),
+								"miasto" 				=> str_replace($search, $replace, $row[3]),
 							),
 						"geometry" 		=> $row[4]						
 				);
-				//echo pg_client_encoding($conn);
-				//echo gettype($arr);
 		}
 		$json = json_encode($arr);
 		$json = str_replace("\"{", "{", $json);
