@@ -28,7 +28,7 @@
 								"numer" 				=> $row[0],
 								"powierzchnia" 	=> $row[1],
 								"ogrod" 				=> $row[2],
-								"miasto" 				=> $row[3]
+								"miasto" 				=> str_replace('ń','\u0144',$row[3]),
 							),
 						"geometry" 		=> $row[4]						
 				);

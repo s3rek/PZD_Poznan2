@@ -1,8 +1,8 @@
-<?php
+ï»¿<?php
 		header('Content-type: text/html');
-		$conn = pg_connect("host=127.0.0.1 port=5432 dbname=ROD_Gliwice user=postgres password=postgres");
+		$conn = pg_connect("host=127.0.0.1 port=5432 dbname=PZD_ROD_Poznan user=postgres password=postgres");
 		if (!$conn) {
-				echo "{success: false, message: 'B³¹d pod³¹czenia bazy'}";
+				echo "{success: false, message: 'BÅ‚Ä…d podÅ‚Ä…czenia bazy'}";
 				exit;
 		}			
 		//$result = pg_query($conn, "SELECT numer, powierzchnia, uzytkownik FROM dzialki where id_ogrodu=".$_GET["gid"]);
@@ -21,14 +21,18 @@
 					//  }
 					
 				
-					$str = iconv("utf-8", "ISO-8859-2", $row[2]);
+					//$str = iconv("utf-8", "ISO-8859-2", $row[2]);
+					//$str = mb_convert_encoding($row[2],"EUC-CN");
+					//$str = str_replace('Å›',addslashes('u015b'),$row[2]);
+					//echo ($str);
+					
 					$arr[]=array(
 					
 							"type" => "Feature",
 							"properties" 	=> array(
 									"numer" 				=> $row[0],
 									"powierzchnia" 	=> $row[1],
-									"name" 				=> $row[2],
+									"name" 				=> str_replace('Å›','\u015b',$row[2]),
 									"nazwa"	=> $row2[0],
 									"miasto"	=> $row2[1]
 							),
