@@ -11,15 +11,15 @@
 		
 		switch ($_GET['lname']){
 			case "dz":
-					$result = pg_query($conn, "SELECT u.id_ogrodu, o.id_deleg FROM ogrody o INNER JOIN dzialki u ON u.id_ogrodu=o.gid WHERE u.gid=".$_GET["gid"]);
+					$result = pg_query($conn, "SELECT u.id_ogrodu FROM ogrody o INNER JOIN dzialki u ON u.id_ogrodu=o.gid WHERE u.gid=".$_GET["gid"]);
 					if(pg_num_rows($result) > 0) 
 					{			
 							while ($row = pg_fetch_row($result))
 							{
-									$messageCd = $messageCd.", idogr: ".$row[0].", iddeleg: ".$row[1];
+									$messageCd = $messageCd.", idogr: ".$row[0];
 							}
 					}
-			break;
+			/*break;
 			case "o":
 					$result = pg_query($conn, "SELECT id_deleg FROM ogrody WHERE gid=".$_GET["gid"]);
 					if(pg_num_rows($result) > 0) 
@@ -28,7 +28,7 @@
 							{
 									$messageCd = $messageCd.", iddeleg: ".$row[0];
 							}
-					}					
+					}*/					
 			break;
 			case "us":
 					$result = pg_query($conn, "SELECT id FROM uzytkownicy WHERE id=".$_GET["user"]);

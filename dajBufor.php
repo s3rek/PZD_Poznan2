@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 //zmienic na utf-8 po wgraniu na serwer
 header('Content-type: text/html; charset=windows-1250');  
-$conn = pg_connect("host=127.0.0.1 port=5432 dbname=ROD_Gliwice user=postgres password=postgres");
+$conn = pg_connect("host=127.0.0.1 port=5432 dbname=PZD_ROD_Poznan user=postgres password=postgres");
 if (!$conn) {
 		echo "{success: false, message: 'B³¹d pod³¹czenia do bazy'}";
 		exit;
@@ -18,9 +18,6 @@ $result = pg_query($conn,
 		  st_buffer(
 		    st_union(
 		      ARRAY[
-		        st_union(
-		          ARRAY(SELECT the_geom FROM ogrody WHERE id_deleg IN (".$_GET['iddeleg']."))
-		        ),
 		        st_union(
 		          ARRAY(SELECT the_geom FROM ogrody WHERE gid IN (".$_GET['idogr']."))
 		        ),

@@ -1584,7 +1584,7 @@ Ext.onReady(function() {
 					_usr = usr;			
 					
 					//wczytanie bufora edycji
-					var adres = 'dajBufor.php?iddeleg=' + _upr.getGid('d') + '&idogr=' + _upr.getGid('o') + '&iddz=' + _upr.getGid('u');
+					var adres = 'dajBufor.php?idogr=' + _upr.getGid('o') + '&iddz=' + _upr.getGid('u');
 					Ext.Ajax.request({
 							url: adres,
 							success: function(objServerResponse, opts) {									
@@ -4062,8 +4062,16 @@ Ext.onReady(function() {
 		   
 		   
 		function createPopupDzialkiFormB(feature){
-				var numer = feature.attributes['numer'];
-    		var powierzchnia = feature.attributes['powierzchnia'];
+			if ((readCookie('upr')) && (readCookie('usr')))
+			{
+				var numer = feature.attributes['numer']
+				var powierzchnia = feature.attributes['powierzchnia']
+			}
+			else
+			{
+				var numer = 'Brak uprawnieñ'
+				var powierzchnia = 'Brak uprawnieñ'
+			}
     		
     		//tworzymy foremke i wypelniamy ja wartosciami
 				var popupDzialkiForm = new Ext.FormPanel({
@@ -4072,15 +4080,13 @@ Ext.onReady(function() {
 		        defaultType:'label',
 		        autoWidth: true,
 		        autoHeight: true,
-		        items:[{
-		        		fieldLabel:'Numer',
-		        		text: 'Brak uprawnieñ'
-		            //text: numer
-		        },{
-		        		fieldLabel:'Powierzchnia', 
-		        		text: 'Brak uprawnieñ'
-								//text: powierzchnia
-		        }],
+					items:[{
+							fieldLabel:'Numer',
+							text: numer
+					},{
+							fieldLabel:'Powierzchnia', 
+							text: powierzchnia
+					}],
 		        buttons:[{        	        	
 		            text:'OK',
 		            handler:function(){											
