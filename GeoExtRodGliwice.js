@@ -1221,7 +1221,7 @@ Ext.onReady(function() {
 				"http://unimap.homenet.org:8081/geoserver/wms", 
 				{				
 						layers:	[
-								'prg_powiaty'			
+								'prg_powiaty'
 						],
 						format: 'image/png',					
 						transparent: true,
@@ -1391,7 +1391,7 @@ Ext.onReady(function() {
 		var	topo50_wms = new OpenLayers.Layer.WMS
 		( 
 				"Mapa Topograficzna", 
-				"http://unimap.dyndns.biz/cgi-bin/mapserv?map=/gis01/unimap.map", 
+				"http://unimap.homenet.net:8081/geoserver/server", 
 				{				
 						layers:	'topo50', 
 						format: 'image/gif',					
