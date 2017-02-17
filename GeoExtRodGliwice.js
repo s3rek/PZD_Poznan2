@@ -131,12 +131,6 @@ function getCookie(name) {
 	}
 	return null;
 }
-
-function eraseCookie(name) {
-	createCookie(name,"",-1);
-}
-
-
 	
 function liczCzas() {
 now = new Date();
@@ -1093,7 +1087,7 @@ Ext.onReady(function() {
 	    	"default": new OpenLayers.Style({
 							strokeWidth: 2,
 	            strokeOpacity: 1,
-	            strokeColor: "#000000",
+	            strokeColor: "#008000",
 	            fillColor: "#e0e0e0",
 	            fillOpacity: 0.3                                		                
 				}),
@@ -1184,10 +1178,10 @@ Ext.onReady(function() {
 
 		var stylAnalizy = new OpenLayers.StyleMap({
 			  "default": new OpenLayers.Style({
-						strokeWidth: 10,
-	          strokeOpacity: 0.5,
+						strokeWidth: 6,
+	          strokeOpacity: 0.8,
 	          strokeColor: "#9900FF",
-	          strokeDashstyle: 'dash',
+	          strokeDashstyle: 'solid',
 	          fillColor: "#FF0000",
 	          fillOpacity: 0
 				}),
@@ -1224,16 +1218,13 @@ Ext.onReady(function() {
 		var	unimap_wms = new OpenLayers.Layer.WMS
 		( 
 				"Unimap WMS", 
-				"http://unimap.dyndns.biz/cgi-bin/mapserv?map=/gis01/unimap.map", 
+				"http://unimap.homenet.org:8081/geoserver/wms", 
 				{				
 						layers:	[
-								'gminy_slask',
-								'gminy', 
-								'powiaty', 
-								'wojewodztwa'					
+								'prg_powiaty'			
 						],
-						format: 'image/gif',					
-						'transparent': true,
+						format: 'image/png',					
+						transparent: true,
 						tileSize: new OpenLayers.Size(400,400)
 				}, 
 				{
@@ -1662,10 +1653,9 @@ Ext.onReady(function() {
 						    	var cookie = cookies[i];   	
 						    	var eqPos = cookie.indexOf("=");   	
 						    	var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-						    	document.cookie = name + "=;";
+						    	document.cookie = name + "=; path=/";
 								
 								}
-								
 						   	//odswiezamy zawartosc dodatkowa strony
 		    				wczytanieDodatkowe();    				
 		    		}
@@ -1696,7 +1686,7 @@ Ext.onReady(function() {
 						    	var cookie = cookies[i];   	
 						    	var eqPos = cookie.indexOf("=");   	
 						    	var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-						    	document.cookie = name + "=;";
+						    	document.cookie = name + "=; path=/";
 								}
 						   	//odswiezamy zawartosc dodatkowa strony
 		    				wczytanieDodatkowe();    				
@@ -1818,7 +1808,6 @@ Ext.onReady(function() {
 				                    //    window.location = '';  //ta lokalizacja w ktorej teraz jestesmy 'zdjecia' przeniosloby do http://127.0.0.1/zdjecia
 				                    //}
 									//alert("aaa");
-									//eraseCookie('zatrzymaj');
 									setCookie('zatrzymaj',"",-1);
 				                    winLogin.hide();
 									alert("Zalogowa³em siê i dalej bêdzie wczytanie dodatkowe")
@@ -1970,11 +1959,6 @@ Ext.onReady(function() {
             sortable: true,
             width: 80,
             dataIndex: "miasto"
-        },{
-            header: "Delegatura",
-            sortable: true,
-            width: 80,
-            dataIndex: "delegatura"
         }],
         listeners: {
         		rowclick: function(gridObj, rowIndex, eventObj) {
