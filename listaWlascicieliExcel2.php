@@ -36,12 +36,13 @@ header('Content-type: text/html charset=UTF-8');
 include( "lib/psxlsgen/psxlsgen.php" );
 
 $myxls = new PhpSimpleXlsGen();
+
 $myxls->totalcol = 2;
 
 $myxls->InsertText( "NUMER DZIA£KI" );
 $myxls->InsertText( "IMIÊ I NAZWISKO" );
 
-$conn = pg_connect("host=127.0.0.1 port=5432 dbname=ROD_Gliwice user=postgres password=postgres");
+$conn = pg_connect("host=127.0.0.1 port=5432 dbname=PZD_ROD_Poznan user=postgres password=postgres");
 if (!$conn) 
 {
 	echo "{success: false, message: 'B³¹d pod³¹czenia do bazy'}"; 

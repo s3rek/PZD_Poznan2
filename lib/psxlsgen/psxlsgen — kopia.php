@@ -3,10 +3,10 @@
 * Script         : PHP Simple Excel File Generator - Base Class
 * Project        : PHP SimpleXlsGen
 * Author         : Erol Ozcan <eozcan@superonline.com>
-* Version        : 0.3
+* Version        : 0.2
 * Copyright      : GNU LGPL
 * URL            : http://psxlsgen.sourceforge.net
-* Last modified  : 13 Jun 2001
+* Last modified  : 19 May 2001
 * Description     : This class is used to generate very simple
 *   MS Excel file (xls) via PHP.
 *   The generated xls file can be obtained by web as a stream
@@ -25,11 +25,11 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
    define( "PHP_SIMPLE_XLS_GEN", 1 );
 
    class  PhpSimpleXlsGen {
-      var  $class_ver = "0.3";    // class version
+      var  $class_ver = "0.2";    // class version
       var  $xls_data   = "";      // where generated xls be stored
       var  $default_dir = "";     // default directory to be saved file
-      var  $filename  = "psxlsgen";       // save filename
-      var  $fname    = "";        // filename with full path
+      var  $filename  = "pzd";       // save filename
+      var  $fname    = "pzd";        // filename with full path
       var  $crow     = 0;         // current row number
       var  $ccol     = 0;         // current column number
       var  $totalcol = 0;         // total number of columns
@@ -57,13 +57,13 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
        $this->xls_data = pack( "ssssss", 0x809, 0x08, 0x00,0x10, 0x0, 0x0 );
        // check header text
        if ( $this->header ) {
-         $this->Header();
+         //$this->Header();
        }
      }
 
      function Header( $text="" ) {
         if ( $text == "" ) {
-           $text = "This file was generated using PSXlsGen at ".date("D, d M Y H:i:s T");
+           $text = "This file was generated using PSXlsGen at ".date("r");
         }
         if ( $this->totalcol < 1 ) {
           $this->totalcol = 1;
@@ -76,7 +76,6 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
      // end of the excel file
      function End()
      {
-       $this->xls_data .= pack("sssssssC", 0x7D, 11, 3, 4, 25600,0,0,0);
        $this->xls_data .= pack( "ss", 0x0A, 0x00 );
        return;
      }
@@ -84,6 +83,7 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
      // write a Number (double) into row, col
      function WriteNumber_pos( $row, $col, $value )
      {
+        $this->xls_data .= pack( "sssss", 0x0203, 14, $row, $col, 0x00 );
         $this->xls_data .= pack( "d", $value );
         return;
      }
@@ -92,6 +92,7 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
      function WriteText_pos( $row, $col, $value )
      {
         $len = strlen( $value );
+        $this->xls_data .= pack( "s*", 0x0204, 8 + $len, $row, $col, 0x00, $len );
         $this->xls_data .= $value;
         return;
      }
@@ -137,17 +138,18 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
      }
 
      // send generated xls as stream file
-     function SendFile( $filename )
-     {
-        $this->filename = $filename;
-        $this->SendFile();
-     }
+    // function SendFile( $filename )
+  //  {
+  //      $this->filename = $filename;
+   //     $this->SendFile();
+   //  }
      // send generated xls as stream file
      function SendFile()
      {
         $this->End();
         header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
         header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
+        header ( "Cache-Control: no-cache, must-revalidate" );
         header ( "Pragma: no-cache" );
         header ( "Content-type: application/x-msexcel" );
         header ( "Content-Disposition: attachment; filename=$this->filename.xls" );
@@ -163,11 +165,11 @@ if( !defined( "PHP_SIMPLE_XLS_GEN" ) ) {
      }
 
      // Save generated xls file
-     function SaveFile( $filename )
-     {
-        $this->filename = $filename;
-        $this->SaveFile();
-     }
+//     function SaveFile( $filename )
+//     {
+//        $this->filename = $filename;
+//        $this->SaveFile();
+//     }
 
      // Save generated xls file
      function SaveFile()
