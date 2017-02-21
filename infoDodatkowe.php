@@ -14,7 +14,6 @@ switch ( $_GET[ 'lname' ] ) {
 																$messageCd = $messageCd . ", idogr: " . $row[ 0 ];
 												} //$row = pg_fetch_row( $result )
 								} //pg_num_rows( $result ) > 0
-								
 								/*break;
 								case "o":
 								$result = pg_query($conn, "SELECT id_deleg FROM ogrody WHERE gid=".$_GET["gid"]);
