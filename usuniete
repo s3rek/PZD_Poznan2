@@ -1,0 +1,283 @@
+		/*addLay();
+	Ext.Msg.alert('Status', warstwyDodatkowe, function(btn, text){			 				                					                    
+					                });*/	
+	
+		/*wczytywanie strony loading mask
+		//setTimeout(function(){
+				Ext.get('loading').remove();
+				Ext.get('loading-mask').fadeOut({remove:true});
+				Ext.get('loading').hide();
+				Ext.get('loading-mask').fadeOut({remove:false});				
+		}, 1250);*/
+		
+		//alert(layerarray[0]);
+		//		alert(layerarray[1]);		
+
+		
+		
+		
+		
+		//mierzenie		
+		
+		
+
+            /*var sketchSymbolizers = {
+                "Point": {
+                    pointRadius: 4,
+                    graphicName: "square",
+                    fillColor: "white",
+                    fillOpacity: 1,
+                    strokeWidth: 1,
+                    strokeOpacity: 1,
+                    strokeColor: "#333333"
+                },
+                "Line": {
+                    strokeWidth: 3,
+                    strokeOpacity: 1,
+                    strokeColor: "#666666",
+                    strokeDashstyle: "dash"
+                },
+                "Polygon": {
+                    strokeWidth: 2,
+                    strokeOpacity: 1,
+                    strokeColor: "#666666",
+                    fillColor: "white",
+                    fillOpacity: 0.3
+                }
+            };
+            var style = new OpenLayers.Style();
+            style.addRules([
+                new OpenLayers.Rule({symbolizer: sketchSymbolizers})
+            ]);
+            var styleMap = new OpenLayers.StyleMap({"default": style});*/
+			
+			
+			
+			
+			
+			
+		///DRUKOWANIE!!!!!!
+
+
+
+    /*var printProvider = new GeoExt.data.PrintProvider({
+        method: "GET", // "POST" recommended for production use
+        capabilities: printCapabilities, // from the info.json script in the html
+        customParams: {
+            mapTitle: "Printing Demo"
+        },
+        listeners:{
+        		"print": function(printProvider,url) {
+            		alert("Mapa wygenerowana pomyślnie.");
+						},
+            "printexception": function(printProvider,response) {
+            		alert("Wystąpił bład: " + response.statusText);
+            }
+        } 
+    });
+	*/			
+			
+			
+		/*		var	um_wms0 = new OpenLayers.Layer.WMS
+				( 
+					"UM Gliwice1", 
+					"http://msip-mapa.um.gliwice.pl/portal/isdp/scripts/isdp.dll/wms/1.1.1", 
+					{				
+							layers:	[								
+									'ulice',
+									'eg_dzialki',
+									'pkt_adr_auto',
+									'vec_gr_miasta',
+									'eg_budynki',
+									'eg_obreb',
+									'vec_osiedle'
+									
+							],
+							projection: new OpenLayers.Projection("EPSG:900913"),
+							//format: 'image/jpg',					
+							'transparent': true
+							//tileSize: new OpenLayers.Size(400,400)
+					}, 
+					{
+							visibility: false,
+							isBaseLayer: false,
+							displayInLayerSwitcher: false
+					}
+				);
+*/
+
+		/*
+		var	um_wms1 = new OpenLayers.Layer.WMS
+		( 
+				"UM Gliwice1", 
+				"http://msip-mapa.um.gliwice.pl/portal/isdp/scripts/isdp.dll/wms/1.1.1", 
+				{				
+						layers:	[								
+								'ulice',
+								'eg_dzialki',
+								'pkt_adr_auto',
+								'vec_gr_miasta',
+								'eg_budynki',
+								'eg_obreb',
+								'vec_osiedle'
+								
+						],
+						projection: new OpenLayers.Projection("EPSG:900913"),
+						//format: 'image/jpg',					
+						'transparent': true
+						//tileSize: new OpenLayers.Size(400,400)
+				}, 
+				{
+						visibility: false,
+						isBaseLayer: false,
+						displayInLayerSwitcher: false
+				}
+		);
+		*/
+
+function encodeRFC5987ValueChars (str) {
+	return encodeURIComponent(str).replace(/['()]/g, escape).replace(/\*/g, '%2A').replace(/%(?:7C|60|5E)/g, unescape);
+	}
+
+/*		
+		//kontrolka select dla warstwy (dwa podejscia)
+		select = new OpenLayers.Control.SelectFeature
+		(
+				[wfsOgrody], 
+				{
+					
+				}
+		);
+		map.addControl(select);
+		select.activate();
+				
+		select.handlers['feature'].stopDown =false;
+		select.handlers['feature'].stopUp = false;			
+		//wfsOgrody.events.register('featureselected', wfsOgrody, function(evt) { alert('click-dupa');});
+		wfsOgrody.events.on({
+		    featureselected: function(event) {
+		    	alert("ble");
+		        var feature = event.feature;
+		        var area = feature.geometry.getArea();
+		        var id = feature.attributes.key;
+		        var output = "ogrod: " + id + " powierzchnia: " + area.toFixed(2);		        
+		    }
+		});		
+					
+*/	
+			
+	/*var temp_s = ',{
+        nodeType: "gx_layer",
+        expanded: true,
+        layer: "UM Gliwice",
+        isLeaf: false,
+        // create subnodes for the layers in the LAYERS param. If we assign
+        // a loader to a LayerNode and do not provide a loader class, a
+        // LayerParamLoader will be assumed.
+        loader: {
+            param: "LAYERS"	
+        }
+    }';*/
+
+/*    
+    
+    //panel delegatury ogrody
+    delegOgrody = new Ext.tree.TreePanel({
+    		title: "Delegatury-Ogrody",
+    		userArrows: true,
+    		//animate: true,
+    		//autoscroll: true,
+    		//scroll: false,
+    		//containerScroll: true,
+    		rootVisible: false,
+    		// auto create TreeLoader
+   			//dataUrl: 'get-nodes.php',
+
+    		loader: new Ext.tree.TreeLoader({
+         		url  : 'jsonTreeDel.php'
+  	    }),
+    		root: new Ext.tree.AsyncTreeNode({
+    				id: 'isroot',
+    				expanded: true,
+    				text: 'root'
+    		}),
+    		listeners: {
+    				"click": { fn: wybOgrZListy },
+    				"beforeexpandnode": { fn: collapseNodes },
+    				"expandnode": { fn: expandDelegatura }
+    		},
+    		collapsed: true,
+    		iconCls: 'do-icon'
+    });
+    
+*/   
+
+/*        
+    function expandDelegatura(node)
+    {
+    		wfsOgrody.filter = new OpenLayers.Filter.Comparison
+				(
+						{
+		        		type: OpenLayers.Filter.Comparison.EQUAL_TO,
+		            property: "id_deleg",
+		            value: (node.attributes["gid"]).substr(2)
+						}
+				); 
+				wfsOgrody.refresh({force: true});
+    }
+*/  
+
+ 		/*
+              
+    // dialog for editing the tree configuration
+    var treeConfigWin = new Ext.Window({
+        layout: "fit",
+        hideBorders: true,
+        closeAction: "hide",
+        width: 300,
+        height: 400,
+        title: "Tree Configuration",
+        items: [{
+            xtype: "form",
+            layout: "fit",
+            items: [{
+                id: "treeconfig",
+                xtype: "textarea"
+            }],
+            buttons: [{
+                text: "Save",
+                handler: function() {
+                    var value = Ext.getCmp("treeconfig").getValue()
+                    try {
+                        var root = warstwyPanel.getRootNode();
+                        root.attributes.children = Ext.decode(value);
+                        warstwyPanel.getLoader().load(root);
+                    } catch(e) {
+                        alert("Invalid JSON");
+                        return;
+                    }
+                    treeConfig = value;
+                    treeConfigWin.hide();
+                }
+            }, {
+                text: "Cancel",
+                handler: function() {
+                    treeConfigWin.hide();
+                }
+            }]
+        }]
+    });
+ 
+		*/
+
+		//Wylaczenie defaultowego menu kontekstowego w oknie mapy
+		//document.getElementById('ext-gen13').oncontextmenu = function(e){
+		//		e = e?e:window.event;
+		//		if (e.preventDefault) e.preventDefault(); //non-IE browsers.
+		//		else return false; // For IE browsers.
+		//};   	
+					
+		
+		
+		
+	

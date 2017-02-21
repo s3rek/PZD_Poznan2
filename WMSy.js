@@ -77,7 +77,7 @@
 						isBaseLayer: false,
 						displayInLayerSwitcher: false
 				});
-			var gmap_d = new OpenLayers.Layer.Google("Google Drogi", {
+		var gmap_d = new OpenLayers.Layer.Google("Google Drogi", {
 						isBaseLayer: true,
 						visibility: false
 				});
