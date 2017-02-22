@@ -327,7 +327,7 @@ function uprawnienia(upr) {
 
 	//dam ci gid, rodzaj_obiektu(d,o,u), do_czego (pozycja w tablicy uprawnien patrz wyzej 0 - dzialka 1 - ogrod itp) a ty mi zwroc uprawnienia
 	this.getUprEl = function(gid, rodzaj_gid, idx_rodzaj_upr) {
-		var wynik = "b";
+		var wynik = "z";
 		var uprArr = this.upr.split(",");
 		//alert(uprArr);
 		for (var i = 0; i < uprArr.length; i++) {
@@ -338,6 +338,7 @@ function uprawnienia(upr) {
 				wynik = rodzajUprArr[idx_rodzaj_upr];
 			}
 		}
+		console.log(wynik);
 		return wynik;
 	}
 }

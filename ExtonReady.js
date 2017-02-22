@@ -530,9 +530,7 @@ Ext.onReady(function() {
 	//warstwy
 	//Warstwy do warstwy grupowej
 	var unimap_wms = new OpenLayers.Layer.WMS("PRG", "http://unimap.homenet.org:8081/geoserver/wms", {
-		layers: [
-			'prg_powiaty'
-		],
+		layers: 'prg_powiaty',
 		format: 'image/png',
 		transparent: true,
 		tileSize: new OpenLayers.Size(400, 400)
@@ -617,9 +615,10 @@ Ext.onReady(function() {
 		isBaseLayer: true
 	});
 
-	var topo50_wms = new OpenLayers.Layer.WMS("Mapa Topograficzna", "http://unimap.homenet.net:8081/geoserver/server", {
+	//nie ma jej
+	var topo50_wms = new OpenLayers.Layer.WMS("Mapa Topograficzna", "http://unimap.homenet.net:8081/geoserver/wms", {
 		layers: 'topo50',
-		format: 'image/gif',
+		format: 'image/png',
 		'transparent': true,
 		tileSize: new OpenLayers.Size(400, 400)
 	}, {
@@ -2520,33 +2519,31 @@ Ext.onReady(function() {
 			upr = upr.replace(/%7C/g, '|');
 			upr = upr.replace(/%2C/g, ',');
 			_upr = new uprawnienia(upr);
+			console.log(_upr);
 			//sa uprawnienia
 
 			//zapytaje sie do bazy w zaleznosci od warstwy
 			//zwraca odpowiednie informacje	np. (gid_miasta, gid_delegatury, gid_ogrodu, gid_wojewodztwa, "kto wstawil zdjecie")
 			Ext.Ajax.request({
 				url: "infoDodatkowe.php?lname=" + _lname + "&gid=" + _gid,
-				success: function(objServerResponse, opts) {
-					var odp = Ext.decode(objServerResponse.responseText);
+				success: function(response, opts) {
+					var odp = Ext.decode(response.responseText);
 
 					//w zaleznosci od warstwy elementu		
 					switch (_lname) {
 						case "dz":
 
 							//pobieramy odpowiedz z serwera
-							var deleg = odp.iddeleg;
+							//var deleg = odp.iddeleg;
 							var ogrod = odp.idogr;
 
 							//dam ci gid, rodzaj_obiektu(d,o,u), do_czego a ty mi zwroc uprawnienia 98-b,111-o,122-z
-							var uprD = _upr.getUprEl(deleg, 'd', 0).charCodeAt(0);
+							//var uprD = _upr.getUprEl(deleg, 'd', 0).charCodeAt(0);
 							var uprO = _upr.getUprEl(ogrod, 'o', 0).charCodeAt(0);
 							var uprU = _upr.getUprEl(_gid, 'u', 0).charCodeAt(0);
 
 							//sprawdzamy ktore sa najwieksze
 							var wynik = 0;
-							if (uprD > wynik) {
-								wynik = uprD
-							}
 							if (uprO > wynik) {
 								wynik = uprO
 							}
@@ -2558,14 +2555,17 @@ Ext.onReady(function() {
 								case 98:
 									//wyswietlenie okienka podgladu ograniczonego
 									createPopup(feature, selectDzialki, 'createPopupDzialkiFormB', 'Działki');
+									console.log("98");
 									break;
 								case 111:
 									//wyswietlenie okienka podgladu
 									createPopup(feature, selectDzialki, 'createPopupDzialkiFormO', 'Działki');
+									console.log("111");
 									break;
 								case 122:
 									//wyswietlenie okienka edycji
 									createPopup(feature, selectDzialki, 'createPopupDzialkiFormZ', 'Działki');
+									console.log("122");
 									break
 								default:
 									alert(wynik);

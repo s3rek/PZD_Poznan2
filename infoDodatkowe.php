@@ -14,16 +14,16 @@ switch ( $_GET[ 'lname' ] ) {
 																$messageCd = $messageCd . ", idogr: " . $row[ 0 ];
 												} //$row = pg_fetch_row( $result )
 								} //pg_num_rows( $result ) > 0
-								/*break;
-								case "o":
+								break;
+				case "o":
 								$result = pg_query($conn, "SELECT id_deleg FROM ogrody WHERE gid=".$_GET["gid"]);
 								if(pg_num_rows($result) > 0) 
 								{			
 								while ($row = pg_fetch_row($result))
 								{
-								$messageCd = $messageCd.", iddeleg: ".$row[0];
+								//$messageCd = $messageCd.", iddeleg: ".$row[0];
 								}
-								}*/
+								}
 								break;
 				case "us":
 								$result = pg_query( $conn, "SELECT id FROM uzytkownicy WHERE id=" . $_GET[ "user" ] );
