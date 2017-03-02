@@ -2534,22 +2534,16 @@ Ext.onReady(function() {
 						case "dz":
 
 							//pobieramy odpowiedz z serwera
-							var deleg = odp.iddeleg;
+							//var deleg = odp.iddeleg;
 							var ogrod = odp.idogr;
 
 							//dam ci gid, rodzaj_obiektu(d,o,u), do_czego a ty mi zwroc uprawnienia 98-b,111-o,122-z
-							var uprD = _upr.getUprEl(deleg, 'd', 0).charCodeAt(0);
-							console.log(uprD);
+							//var uprD = _upr.getUprEl(deleg, 'd', 0).charCodeAt(0);
 							var uprO = _upr.getUprEl(ogrod, 'o', 0).charCodeAt(0);
-							console.log(uprO);
-							var uprU = _upr.getUprEl(_gid, 'u', 1).charCodeAt(0);
-							console.log(uprU);
+							var uprU = _upr.getUprEl(_gid, 'u', 0).charCodeAt(0);
 
 							//sprawdzamy ktore sa najwieksze
 							var wynik = 0;
-							if (uprD > wynik) {
-								wynik = uprD
-							}
 							if (uprO > wynik) {
 								wynik = uprO
 							}

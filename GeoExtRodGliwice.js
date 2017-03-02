@@ -219,7 +219,6 @@ function setCookie(name, value, days) {
 		date.setTime(date.getTime() + (days));
 		var expires = "; expires=" + date.toGMTString();
 	} else var expires = "";
-	console.log(value);
 	document.cookie = name + "=" + value + expires + "; path=/";
 }
 
@@ -328,9 +327,9 @@ function uprawnienia(upr) {
 
 	//dam ci gid, rodzaj_obiektu(d,o,u), do_czego (pozycja w tablicy uprawnien patrz wyzej 0 - dzialka 1 - ogrod itp) a ty mi zwroc uprawnienia
 	this.getUprEl = function(gid, rodzaj_gid, idx_rodzaj_upr) {
-		var wynik = "b";
+		var wynik = "o";
 		var uprArr = this.upr.split(",");
-		alert(uprArr);
+		//alert(uprArr);
 		for (var i = 0; i < uprArr.length; i++) {
 			var r = uprArr[i].charAt(0);
 			var g = uprArr[i].substring(uprArr[i].indexOf('_') + 1, uprArr[i].indexOf('.'));
