@@ -673,7 +673,7 @@ Ext.onReady(function() {
 		protocol: new OpenLayers.Protocol.WFS({
 			version: "1.0.0",
 			srsName: "EPSG:2180",
-			url: "http://127.0.0.1:8081/geoserver/wfs",
+			url: "http://unimap.homenet.org:8081/geoserver/wfs",
 			featureType: "ogrody",
 			featureNS: "RODPOZNAN"
 		}),
@@ -707,26 +707,26 @@ Ext.onReady(function() {
 	function wczytanieDodatkowe() {
 		//alert("A");
 
-		//console.log(readCookie('upr'));
-		//console.log(readCookie('usr'));
+		//console.log(readCookie('poz2_upr'));
+		//console.log(readCookie('poz2_usr'));
 		console.log("wczytaniedodatkowe()");
 
 		//jest ciasteczko z uprawnieniami oraz z uzytkownikiem - wczytujemy dodatkowe opcje
-		if ((readCookie('upr')) && (readCookie('usr'))) {
+		if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 			logBttn.setText('Wyloguj');
 			logBttn.setIconClass('logout-icon');
 
 			//znaczki w hex w caisteczku sie zapisaly
-			var upr = readCookie('upr');
-			upr = upr.replace(/%7C/g, '|');
-			upr = upr.replace(/%2C/g, ',');
-			//alert(upr);
-			var usr = readCookie('usr');
+			var poz2_upr = readCookie('poz2_upr');
+			poz2_upr = poz2_upr.replace(/%7C/g, '|');
+			poz2_upr = poz2_upr.replace(/%2C/g, ',');
+			//alert(poz2_upr);
+			var poz2_usr = readCookie('poz2_usr');
 
-			_upr = new uprawnienia(upr);
+			_upr = new uprawnienia(poz2_upr);
 
 			//obiekt z uzytkownika tez mozna zrobic
-			_usr = usr;
+			_usr = poz2_usr;
 
 			//wczytanie bufora edycji
 			var adres = 'dajBufor.php?idogr=' + _upr.getGid('o') + '&iddz=' + _upr.getGid('u');
@@ -774,7 +774,7 @@ Ext.onReady(function() {
 		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-	if ((readCookie('upr')) && (readCookie('usr'))) {
+	if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 
 		var logBttn = new Ext.Button({
 			text: 'Wyloguj',
@@ -840,7 +840,7 @@ Ext.onReady(function() {
 		iconCls: 'tools-icon',
 		//wchodzi w procedure logowania/wylogowywania sie
 		handler: function(e) {
-			if (readCookie('usr')) {
+			if (readCookie('poz2_usr')) {
 				wczytanieDodatkowe();
 			} else {
 				Ext.Msg.alert('Niepowodzenie!', 'Aby wczytać narzędzia edycyjne zaloguj się');
@@ -855,7 +855,7 @@ Ext.onReady(function() {
 		iconCls: 'upload-icon',
 		//wchodzi w procedure logowania/wylogowywania sie
 		handler: function(e) {
-			if (readCookie('usr')) {
+			if (readCookie('poz2_usr')) {
 				winWgrajPlik.show();
 			} else {
 				Ext.Msg.alert('Niepowodzenie!', 'Aby dodać plik zaloguj się');
@@ -869,7 +869,7 @@ Ext.onReady(function() {
 		iconCls: 'upload-icon',
 		//wchodzi w procedure logowania/wylogowywania sie
 		handler: function(e) {
-			if (readCookie('usr')) {
+			if (readCookie('poz2_usr')) {
 				winWgrajWMS.show();
 			} else {
 				Ext.Msg.alert('Niepowodzenie!', 'Aby dodać plik zaloguj się');
@@ -1404,7 +1404,7 @@ Ext.onReady(function() {
 					abc = wgrajPlikPanel.getForm().findField('um_komentarz').getValue();
 					wgrajPlikPanel.getForm().submit({
 						//abc = "aaa",//wgrajPlikPanel.getForm().findField('um_komentarz').getValue(),
-						url: 'wgrajPlik.php?nazwa=' + wgrajPlikPanel.getForm().findField('um_komentarz').getValue() + '&id=' + getCookie('usr'),
+						url: 'wgrajPlik.php?nazwa=' + wgrajPlikPanel.getForm().findField('um_komentarz').getValue() + '&id=' + getCookie('poz2_usr'),
 						//method:'POST',
 						waitMsg: 'Wgrywanie twojego pliku...',
 
@@ -1540,7 +1540,7 @@ Ext.onReady(function() {
 					})
 					wgrajWMSPanel.getForm().submit({
 						//abc = "aaa",//wgrajPlikPanel.getForm().findField('um_komentarz').getValue(),
-						//url:'wgrajPlik.php?nazwa='+wgrajWMSPanel.getForm().findField('um_komentarz').getValue()+'&id='+getCookie('usr'),
+						//url:'wgrajPlik.php?nazwa='+wgrajWMSPanel.getForm().findField('um_komentarz').getValue()+'&id='+getCookie('poz2_usr'),
 						//method:'POST',
 						// waitMsg: 'Wgrywanie twojego pliku...',
 
@@ -1778,7 +1778,7 @@ Ext.onReady(function() {
 				iconAlign: 'top',
 				tooltip: 'Wczytanie warstwy WMS',
 				handler: function(e) {
-					if (readCookie('usr')) {
+					if (readCookie('poz2_usr')) {
 						winWgrajWMS.show();
 					} else {
 						Ext.Msg.alert('Niepowodzenie!', 'Aby dodać plik zaloguj się');
@@ -2512,13 +2512,13 @@ Ext.onReady(function() {
 			_lname = 'wzd'
 		}
 		//if (_upr){
-		if ((readCookie('upr')) && (readCookie('usr'))) {
+		if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 			console.log("DM tu ustawiamy uprawnienia z cookies");
-			_usr = readCookie('usr');
-			var upr = readCookie('upr');
-			upr = upr.replace(/%7C/g, '|');
-			upr = upr.replace(/%2C/g, ',');
-			_upr = new uprawnienia(upr);
+			_usr = readCookie('poz2_usr');
+			var poz2_upr = readCookie('poz2_upr');
+			poz2_upr = poz2_upr.replace(/%7C/g, '|');
+			poz2_upr = poz2_upr.replace(/%2C/g, ',');
+			_upr = new uprawnienia(poz2_upr);
 			console.log(_upr);
 			//sa uprawnienia
 
@@ -2945,7 +2945,7 @@ Ext.onReady(function() {
 
 
 	function createPopupDzialkiFormB(feature) {
-		if ((readCookie('upr')) && (readCookie('usr'))) {
+		if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 			var numer = feature.attributes['numer']
 			var powierzchnia = feature.attributes['powierzchnia']
 		} else {
@@ -3413,15 +3413,15 @@ Ext.onReady(function() {
 
 	//uruchomienie analizy wolnych działek
 	function analizaWolnychDzialek(_exe) {
-		if ((readCookie('upr')) && (readCookie('usr'))) {
+		if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 			now = new Date();
-			setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-			setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-			setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
+			setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+			setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+			setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
 		}
 		if (_exe == true) {
 			//now = new Date();
-			//setCookie('time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
+			//setCookie('poz2_time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
 			rightPanel.add(gridDzialkWolnePanel.cloneConfig());
 			rightPanel.setActiveTab(rightPanel.items.length - 1);
 			Ext.getCmp("panel-pomocy").update(analizaDzialkiWolneHTML);
@@ -3443,17 +3443,17 @@ Ext.onReady(function() {
 		//alert(gid);
 
 		if (_exe == true) {
-			if ((readCookie('upr')) && (readCookie('usr'))) {
+			if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 				now = new Date();
-				setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-				setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-				setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
+				setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+				setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+				setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
 				if (aktywnyOgrod) {
-					_usr = readCookie('usr');
-					var upr = readCookie('upr');
-					upr = upr.replace(/%7C/g, '|');
-					upr = upr.replace(/%2C/g, ',');
-					_upr = new uprawnienia(upr);
+					_usr = readCookie('poz2_usr');
+					var poz2_upr = readCookie('poz2_upr');
+					poz2_upr = poz2_upr.replace(/%7C/g, '|');
+					poz2_upr = poz2_upr.replace(/%2C/g, ',');
+					_upr = new uprawnienia(poz2_upr);
 					rightPanel.add(gridWlascicielePanel.cloneConfig());
 					rightPanel.setActiveTab(rightPanel.items.length - 1);
 					Ext.getCmp("panel-pomocy").update(analizaDzialkiWolneHTML);
@@ -3477,11 +3477,11 @@ Ext.onReady(function() {
 
 	//uruchomienie analizy niewymiarowych działek
 	function analizaNiewymiarowychDzialek(_exe) {
-		if ((readCookie('upr')) && (readCookie('usr'))) {
+		if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 			now = new Date();
-			setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-			setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-			setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
+			setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+			setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+			setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
 		}
 		if (_exe == true) {
 			rightPanel.add(gridDzialkNiewymiarowePanel.cloneConfig());
@@ -3503,19 +3503,19 @@ Ext.onReady(function() {
 	//uruchomienie analizy pozostalych dokumentow
 	function analizaPozostaleDokumenty(_exe) {
 		//now = new Date();
-		//setCookie('time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
+		//setCookie('poz2_time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
 		if (_exe == true) {
-			if ((readCookie('upr')) && (readCookie('usr'))) {
+			if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 				now = new Date();
-				setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-				setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-				setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
+				setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+				setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+				setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
 
-				_usr = readCookie('usr');
-				var upr = readCookie('upr');
-				upr = upr.replace(/%7C/g, '|');
-				upr = upr.replace(/%2C/g, ',');
-				_upr = new uprawnienia(upr);
+				_usr = readCookie('poz2_usr');
+				var poz2_upr = readCookie('poz2_upr');
+				poz2_upr = poz2_upr.replace(/%7C/g, '|');
+				poz2_upr = poz2_upr.replace(/%2C/g, ',');
+				_upr = new uprawnienia(poz2_upr);
 
 				Ext.Ajax.request({
 					url: "infoDodatkowe.php?lname=us&user=" + _usr,
@@ -3553,19 +3553,19 @@ Ext.onReady(function() {
 	//uruchomienie analizy dokumentow
 	function analizaPokazDokumenty(_exe) {
 		//now = new Date();
-		//setCookie('time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
+		//setCookie('poz2_time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
 		if (_exe == true) {
-			if ((readCookie('upr')) && (readCookie('usr'))) {
+			if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 				now = new Date();
-				setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-				setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-				setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
+				setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+				setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+				setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
 
-				_usr = readCookie('usr');
-				var upr = readCookie('upr');
-				upr = upr.replace(/%7C/g, '|');
-				upr = upr.replace(/%2C/g, ',');
-				_upr = new uprawnienia(upr);
+				_usr = readCookie('poz2_usr');
+				var poz2_upr = readCookie('poz2_upr');
+				poz2_upr = poz2_upr.replace(/%7C/g, '|');
+				poz2_upr = poz2_upr.replace(/%2C/g, ',');
+				_upr = new uprawnienia(poz2_upr);
 				if (aktywnyOgrod) {
 					Ext.Ajax.request({
 						url: "infoDodatkowe.php?lname=o&gid=" + aktywnyOgrod,
@@ -3603,12 +3603,12 @@ Ext.onReady(function() {
 
 	//upload pliku 
 	function uploadFile() {
-		if ((getCookie('upr')) && (getCookie('usr'))) {
-			_usr = readCookie('usr');
-			var upr = readCookie('upr');
-			upr = upr.replace(/%7C/g, '|');
-			upr = upr.replace(/%2C/g, ',');
-			_upr = new uprawnienia(upr);
+		if ((getCookie('poz2_upr')) && (getCookie('poz2_usr'))) {
+			_usr = readCookie('poz2_usr');
+			var poz2_upr = readCookie('poz2_upr');
+			poz2_upr = poz2_upr.replace(/%7C/g, '|');
+			poz2_upr = poz2_upr.replace(/%2C/g, ',');
+			_upr = new uprawnienia(poz2_upr);
 
 			Ext.Ajax.request({
 				url: "fileupload/file-upload.html",
@@ -3626,12 +3626,12 @@ Ext.onReady(function() {
 	// Uruchomienie analizy właścicieli działek 1
 	function analizaWlascicieleDzialek(_exe) {
 		if (_exe == true) {
-			if ((readCookie('upr')) && (readCookie('usr'))) {
-				_usr = readCookie('usr');
-				var upr = readCookie('upr');
-				upr = upr.replace(/%7C/g, '|');
-				upr = upr.replace(/%2C/g, ',');
-				_upr = new uprawnienia(upr);
+			if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
+				_usr = readCookie('poz2_usr');
+				var poz2_upr = readCookie('poz2_upr');
+				poz2_upr = poz2_upr.replace(/%7C/g, '|');
+				poz2_upr = poz2_upr.replace(/%2C/g, ',');
+				_upr = new uprawnienia(poz2_upr);
 				//if (_upr){
 				if (aktywnyOgrod) {
 					Ext.Ajax.request({
@@ -3671,19 +3671,19 @@ Ext.onReady(function() {
 	// Uruchomienie analizy właścicieli działek do pdf
 	function analizaWlascicieleDzialekPDF(_exe) {
 		//now = new Date();
-		//setCookie('time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
+		//setCookie('poz2_time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
 		if (_exe == true) {
-			if ((readCookie('upr')) && (readCookie('usr'))) {
+			if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 				now = new Date();
-				setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-				setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-				setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
+				setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+				setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+				setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
 
-				_usr = readCookie('usr');
-				var upr = readCookie('upr');
-				upr = upr.replace(/%7C/g, '|');
-				upr = upr.replace(/%2C/g, ',');
-				_upr = new uprawnienia(upr);
+				_usr = readCookie('poz2_usr');
+				var poz2_upr = readCookie('poz2_upr');
+				poz2_upr = poz2_upr.replace(/%7C/g, '|');
+				poz2_upr = poz2_upr.replace(/%2C/g, ',');
+				_upr = new uprawnienia(poz2_upr);
 				//if (_upr){
 				if (aktywnyOgrod) {
 					window.open('listaWlascicieliPDF.php?&gid=' + aktywnyOgrod, '', 'scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
@@ -3704,18 +3704,18 @@ Ext.onReady(function() {
 	// uruchomienie analizy właścicieli działek do excela	
 	function analizaWlascicieleDzialekExcel(_exe) {
 		//now = new Date();
-		//setCookie('time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
+		//setCookie('poz2_time_to_log',(now.getTime()+(15*60*1000))/1000,(15*60*1000));
 		if (_exe == true) {
-			if ((readCookie('upr')) && (readCookie('usr'))) {
+			if ((readCookie('poz2_upr')) && (readCookie('poz2_usr'))) {
 				now = new Date();
-				setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-				setCookie('usr', readCookie('usr'), (15 * 60 * 1000));
-				setCookie('upr', readCookie('upr'), (15 * 60 * 1000));
-				_usr = readCookie('usr');
-				var upr = readCookie('upr');
-				upr = upr.replace(/%7C/g, '|');
-				upr = upr.replace(/%2C/g, ',');
-				_upr = new uprawnienia(upr);
+				setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+				setCookie('poz2_usr', readCookie('poz2_usr'), (15 * 60 * 1000));
+				setCookie('poz2_upr', readCookie('poz2_upr'), (15 * 60 * 1000));
+				_usr = readCookie('poz2_usr');
+				var poz2_upr = readCookie('poz2_upr');
+				poz2_upr = poz2_upr.replace(/%7C/g, '|');
+				poz2_upr = poz2_upr.replace(/%2C/g, ',');
+				_upr = new uprawnienia(poz2_upr);
 				console.log(_upr);
 				//if (_upr){
 				if (aktywnyOgrod) {

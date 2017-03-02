@@ -92,7 +92,7 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 	}
 });
 
-if ((getCookie('upr')) && (getCookie('usr'))) {
+if ((getCookie('poz2_upr')) && (getCookie('poz2_usr'))) {
 	var animeInt;
 	clearInterval(animeInt);
 	animeInt = setInterval("liczCzas()", 1000);
@@ -203,11 +203,11 @@ hideSpinner = function() {
 
 //resetuje timer odliczaj¹cy do wylogowania u¿ytkownika
 function reset_timer() {
-	if ((getCookie('upr')) && (getCookie('usr'))) {
+	if ((getCookie('poz2_upr')) && (getCookie('poz2_usr'))) {
 		now = new Date();
-		setCookie('time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
-		setCookie('usr', getCookie('usr'), (15 * 60 * 1000));
-		setCookie('upr', getCookie('upr'), (15 * 60 * 1000));
+		setCookie('poz2_time_to_log', (now.getTime() + (15 * 60 * 1000)) / 1000, (15 * 60 * 1000));
+		setCookie('poz2_usr', getCookie('poz2_usr'), (15 * 60 * 1000));
+		setCookie('poz2_upr', getCookie('poz2_upr'), (15 * 60 * 1000));
 	}
 
 }
@@ -245,7 +245,7 @@ function liczCzas() {
 	minuty = now.getMinutes();
 	sekundy = now.getSeconds();
 	minuty = minuty + 65;
-	time_to = getCookie('time_to_log');
+	time_to = getCookie('poz2_time_to_log');
 	if (((time_to * 1000) - now.getTime()) > 0 && time_to != null) {;
 	} else {
 
@@ -253,7 +253,7 @@ function liczCzas() {
 			loginRepeat.show();
 		}
 	}
-	time_to = getCookie('time_to_log');
+	time_to = getCookie('poz2_time_to_log');
 	to = new Date(rok, miesiac, dzien, godzina, minuty, sekundy);
 	ile = (time_to * 1000) - now.getTime();
 
@@ -270,13 +270,13 @@ function liczCzas() {
 }
 
 //klasa uprawnienia
-function uprawnienia(upr) {
-	this.upr = upr;
+function uprawnienia(poz2_upr) {
+	this.poz2_upr = poz2_upr;
 
 	//oddaj liste 'gid' rozdzielonych przecinkami z uprawnien
 	//w zaleznosci od rodzaju uprawnien (u,o,d)
 	this.getGid = function(rodzaj_gid) {
-		var uprArr = this.upr.split(",");
+		var uprArr = this.poz2_upr.split(",");
 		var zestGid = 0;
 		for (var i = 0; i < uprArr.length; i++) {
 			var r = uprArr[i].charAt(0);
@@ -292,7 +292,7 @@ function uprawnienia(upr) {
 	//[[gid_delegatury, rodzaj_uprawnien],[1, 'z']]
 	//parametr idx_rodzaj_upr (patrz baza danych): 0-dzialki, 1-ogrody, 2-inneElementy
 	this.getGidUpr = function(rodzaj_gid, idx_rodzaj_upr) {
-		var uprArr = this.upr.split(",");
+		var uprArr = this.poz2_upr.split(",");
 		var zestGidUpr = new Array();
 		for (var i = 0; i < uprArr.length; i++) {
 			var r = uprArr[i].charAt(0);
@@ -328,9 +328,9 @@ function uprawnienia(upr) {
 
 	//dam ci gid, rodzaj_obiektu(d,o,u), do_czego (pozycja w tablicy uprawnien patrz wyzej 0 - dzialka 1 - ogrod itp) a ty mi zwroc uprawnienia
 	this.getUprEl = function(gid, rodzaj_gid, idx_rodzaj_upr) {
-		var wynik = "b";
-		var uprArr = this.upr.split(",");
-		alert(uprArr);
+		var wynik = "o";
+		var uprArr = this.poz2_upr.split(",");
+		//alert(uprArr);
 		for (var i = 0; i < uprArr.length; i++) {
 			var r = uprArr[i].charAt(0);
 			var g = uprArr[i].substring(uprArr[i].indexOf('_') + 1, uprArr[i].indexOf('.'));
