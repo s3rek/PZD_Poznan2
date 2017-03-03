@@ -530,7 +530,7 @@ Ext.onReady(function() {
 	//warstwy
 	//Warstwy do warstwy grupowej
 	var unimap_wms = new OpenLayers.Layer.WMS("PRG", "http://unimap.homenet.org:8081/geoserver/wms", {
-		layers: 'prg_powiaty',
+		layers: 'prg_gminy',
 		format: 'image/png',
 		transparent: true,
 		tileSize: new OpenLayers.Size(400, 400)
@@ -687,11 +687,40 @@ Ext.onReady(function() {
 		},
 		isBaseLayer: false
 	});
+	
+	
+	var saveStrategyGminy = new OpenLayers.Strategy.Save({
+		auto: true
+	});
+	
+	wfsGminy = new OpenLayers.Layer.Vector("Gminy", {
+		strategies: [new OpenLayers.Strategy.Fixed(), saveStrategyGminy],
+		projection: new OpenLayers.Projection('EPSG:2180'),
+		styleMap: stylGminy,
+		visibility: true,
+		opacity: 0.5,
+		protocol: new OpenLayers.Protocol.WFS({
+			version: "1.0.0",
+			srsName: "EPSG:2180",
+			url: "http://unimap.homenet.org:8081/geoserver/wfs",
+			featureType: "gminy_sl",
+			featureNS: "RODPOZNAN"
+		}),
+
+		eventListeners: {
+			"featuresadded": gminyLoaded
+		},
+		isBaseLayer: false
+	});
 
 
 	//powieksz do zasiegu warstwy (rowniez po zmianie filtra)
 	function ogrodyLoaded() {
 		map.zoomToExtent(wfsOgrody.getDataExtent());
+	}
+	
+	function gminyLoaded() {
+		map.zoomToExtent(wfsGminy.getDataExtent());
 	}
 
 
@@ -1800,7 +1829,7 @@ Ext.onReady(function() {
 	//alert(wararray);		
 	//alert(um_wms_tab[0]);
 	//podpinanie warstw pod okno
-	var layers_mp_panel = "[gmap_d,gmap_h,kierunekLyr,bufferLyr,wfsOgrody,wfsDzialki,polyLyr,lineLyr,wfsZdjecia,pointLyr,topo50_wms,unimap_wms,um_wms,pageLayer";
+	var layers_mp_panel = "[gmap_d,gmap_h,kierunekLyr,bufferLyr,wfsOgrody,wfsDzialki,wfsGminy,polyLyr,lineLyr,wfsZdjecia,pointLyr,topo50_wms,unimap_wms,um_wms,pageLayer";
 	if (wararray) {
 		for (u = 0; u < wararray.length; u++) {
 			layers_mp_panel += "," + um_wms_tab[u];
@@ -2538,11 +2567,11 @@ Ext.onReady(function() {
 							var ogrod = odp.idogr;
 
 							//dam ci gid, rodzaj_obiektu(d,o,u), do_czego a ty mi zwroc uprawnienia 98-b,111-o,122-z
-							var uprD = _upr.getUprEl(deleg, 'd', 0).charCodeAt(0);
+							var uprD = _upr.getUprEl(deleg, 'd', 1).charCodeAt(0);
 							console.log(uprD);
-							var uprO = _upr.getUprEl(ogrod, 'o', 0).charCodeAt(0);
+							var uprO = _upr.getUprEl(ogrod, 'o', 1).charCodeAt(0);
 							console.log(uprO);
-							var uprU = _upr.getUprEl(_gid, 'u', 1).charCodeAt(0);
+							var uprU = _upr.getUprEl(_gid, 'u', 0).charCodeAt(0);
 							console.log(uprU);
 
 							//sprawdzamy ktore sa najwieksze
@@ -3354,19 +3383,24 @@ Ext.onReady(function() {
 		miastaOgrody.collapseAll();
 	}
 
-	//na poczatku sie odpala bo root sie rozwija
+	//odpala sie przy rozwijaniu roota z miastem
 	function expandMiasto(node) {
-		wfsOgrody.filter = new OpenLayers.Filter.Comparison({
+		wfsGminy.filter = new OpenLayers.Filter.Comparison({
 			type: OpenLayers.Filter.Comparison.EQUAL_TO,
-			property: "id_miasta",
-			value: (node.attributes["gid"]).substr(2)
+			property: "gid",
+			value: (node.attributes["gmina"]),
 		});
-		console.log(wfsOgrody);
+		wfsOgrody.filter = new OpenLayers.Filter.Comparison({
+				type: OpenLayers.Filter.Comparison.EQUAL_TO,
+				property: "id_miasta",
+				value: (node.attributes["gid"]).substr(2)
+		});
 		wfsOgrody.refresh({
 			force: true
 		});
-		//console.log(wfsOgrody);
-		//jeszcze nie sa wczytane ogrody - w funkcji 'ogrodyLoaded' jest powiekszenie do maksymalnego rozmiaru warstwy      
+		wfsGminy.refresh({
+			force: true
+		});
 	}
 
 	//panel miasta ogrody

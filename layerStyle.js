@@ -6,6 +6,13 @@
 		fillColor: "#CCCCFF",
 		fillOpacity: 0.5
 	});
+	
+	var stylGminy = new OpenLayers.Style({
+		strokeWidth: 2,
+		strokeOpacity: 1,
+		strokeColor: "#5c5c8a",
+		fillOpacity: 0
+	});
 
 	var stylSelect = new OpenLayers.Style({
 		strokeColor: "#00ccff",

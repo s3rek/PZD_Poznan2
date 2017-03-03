@@ -328,18 +328,23 @@ function uprawnienia(poz2_upr) {
 
 	//dam ci gid, rodzaj_obiektu(d,o,u), do_czego (pozycja w tablicy uprawnien patrz wyzej 0 - dzialka 1 - ogrod itp) a ty mi zwroc uprawnienia
 	this.getUprEl = function(gid, rodzaj_gid, idx_rodzaj_upr) {
-		var wynik = "o";
+		var wynik = "";
 		var uprArr = this.poz2_upr.split(",");
 		//alert(uprArr);
 		for (var i = 0; i < uprArr.length; i++) {
 			var r = uprArr[i].charAt(0);
+			alert(uprArr);
+			alert(r);
+			alert(rodzaj_gid);
 			var g = uprArr[i].substring(uprArr[i].indexOf('_') + 1, uprArr[i].indexOf('.'));
+			alert(g);
+			alert(gid);
 			if ((r == rodzaj_gid) && (g == gid)) {
 				var rodzajUprArr = uprArr[i].substring(uprArr[i].indexOf('.') + 1).split("|");
 				wynik = rodzajUprArr[idx_rodzaj_upr];
 			}
 		}
-		console.log(wynik);
+		alert(wynik);
 		return wynik;
 	}
 }
