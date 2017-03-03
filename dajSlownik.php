@@ -1,6 +1,6 @@
 <?php
 header('Content-type: text/html; charset=windows-1250');
-$conn = pg_connect("host=127.0.0.1 port=5432 dbname=dm_t user=postgres password=postgres");
+$conn = pg_connect("host=127.0.0.1 port=5432 dbname=PZD_ROD_Poznan user=postgres password=postgres");
 if (!$conn) {
 		echo "{rows:[{\"gid\": \"1\", \"nazwa\": \"B³¹d pod³¹czenia do bazy\"}]}";
 		exit;

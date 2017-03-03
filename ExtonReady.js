@@ -2571,7 +2571,7 @@ Ext.onReady(function() {
 							console.log(uprD);
 							var uprO = _upr.getUprEl(ogrod, 'o', 1).charCodeAt(0);
 							console.log(uprO);
-							var uprU = _upr.getUprEl(_gid, 'u', 0).charCodeAt(0);
+							var uprU = _upr.getUprEl(_gid, 'u', 1).charCodeAt(0);
 							console.log(uprU);
 
 							//sprawdzamy ktore sa najwieksze
@@ -2956,6 +2956,7 @@ Ext.onReady(function() {
 
 						//ustawiamy stan feature'a na zaktualizowany								    		
 						feature.state = OpenLayers.State.UPDATE;
+						console.log(feature);
 
 						//trzeba dac znac, ze cos sie zmienilo
 						feature.layer.events.triggerEvent("afterfeaturemodified", {
