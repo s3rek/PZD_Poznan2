@@ -673,7 +673,7 @@ Ext.onReady(function() {
 		protocol: new OpenLayers.Protocol.WFS({
 			version: "1.0.0",
 			srsName: "EPSG:2180",
-			url: "http://unimap.homenet.org:8081/geoserver/wfs",
+			url: "http://127.0.0.1:8081/geoserver/wfs",
 			featureType: "ogrody",
 			featureNS: "RODPOZNAN"
 		}),
@@ -2953,6 +2953,22 @@ Ext.onReady(function() {
 						feature.attributes.telefon = f.findField("telefon").getValue();
 						feature.attributes.id_miasta = f.findField("id_miasta").getValue();
 						feature.attributes.id_deleg = f.findField("id_deleg").getValue();
+						
+						$.ajax({
+						type: 'POST',
+						url: 'edycjabazy.php',
+						data: {json: JSON.stringify(feature.attributes)},
+						dataType: 'json'
+						})
+						.done( function( data ) {
+						console.log('done');
+						console.log(data);
+						})
+						.fail( function( data ) {
+						console.log('fail');
+						console.log(data);
+						});
+						
 
 						//ustawiamy stan feature'a na zaktualizowany								    		
 						feature.state = OpenLayers.State.UPDATE;
@@ -3348,19 +3364,19 @@ Ext.onReady(function() {
 
 	//definicja wyboru ogrodu z listy
 	function wybOgrZListy(node, e) {
-		//console.log(wfsOgrody);
+		console.log(wfsOgrody);
 
 		var _id = node.attributes["gid"];
 
 		if (_id.substr(0, 1) == 'o') {
 			_id = _id.substr(2);
-			console.log(_id)
+			//console.log(_id)
 			//wybieranie elementu o danym gid
 			for (fid in wfsOgrody.features) {
 				var feature = wfsOgrody.features[fid];
-				console.log(feature.attributes);
+				//console.log(feature.attributes);
 				var _gid = feature.attributes.gid;
-				console.log(_gid);
+				//console.log(_gid);
 				//alert(_id);
 				if (_gid == _id) {
 					var bounds = feature.geometry.getBounds();
