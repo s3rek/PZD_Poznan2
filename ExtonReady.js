@@ -76,11 +76,11 @@ Ext.onReady(function() {
 		pomocPanel.show()
 	}
 
-	/*function detabPomoc() {
-				rightPanel.remove(rightPanel.getComponent("panel-pomocy"));
-				Ext.getCmp('panel-pomocy').update(wyjsciowyHTML);
-				pageLayer.setVisibility(false)
-		}*/
+	// function detabPomoc() {
+				// rightPanel.remove(rightPanel.getComponent("panel-pomocy"));
+				// Ext.getCmp('panel-pomocy').update(wyjsciowyHTML);
+				// pageLayer.setVisibility(false)
+		// }
 
 
 
@@ -223,8 +223,6 @@ Ext.onReady(function() {
 	//deklaracja mapy
 	map = new OpenLayers.Map(opcjeMapy);
 
-	//?????
-	//desc = document.getElementById('desc');
 
 	//?????? 
 	var printProvider = new GeoExt.data.PrintProvider({
@@ -2954,9 +2952,10 @@ Ext.onReady(function() {
 						feature.attributes.id_miasta = f.findField("id_miasta").getValue();
 						feature.attributes.id_deleg = f.findField("id_deleg").getValue();
 						
+						//wysyłanie edycji do serwera
 						$.ajax({
 						type: 'POST',
-						url: 'edycjabazy.php',
+						url: 'edycjabazy.php?obiekt=ogrod',
 						data: {json: JSON.stringify(feature.attributes)},
 						dataType: 'json'
 						})
@@ -3177,6 +3176,22 @@ Ext.onReady(function() {
 						feature.attributes.prad = pola.items[7].checked.toString();
 						feature.attributes.woda = pola.items[8].checked.toString();
 						feature.attributes.gaz = pola.items[9].checked.toString();
+						
+						//wysyłanie edycji do serwera
+						$.ajax({
+						type: 'POST',
+						url: 'edycjabazy.php?obiekt=dzialki',
+						data: {json: JSON.stringify(feature.attributes)},
+						dataType: 'json'
+						})
+						.done( function( data ) {
+						console.log('done');
+						console.log(data);
+						})
+						.fail( function( data ) {
+						console.log('fail');
+						console.log(data);
+						});
 
 						//ustawiamy stan feature'a na zaktualizowany								    		
 						feature.state = OpenLayers.State.UPDATE;
