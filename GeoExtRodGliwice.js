@@ -333,18 +333,12 @@ function uprawnienia(poz2_upr) {
 		//alert(uprArr);
 		for (var i = 0; i < uprArr.length; i++) {
 			var r = uprArr[i].charAt(0);
-			alert(uprArr);
-			alert(r);
-			alert(rodzaj_gid);
 			var g = uprArr[i].substring(uprArr[i].indexOf('_') + 1, uprArr[i].indexOf('.'));
-			alert(g);
-			alert(gid);
 			if ((r == rodzaj_gid) && (g == gid)) {
 				var rodzajUprArr = uprArr[i].substring(uprArr[i].indexOf('.') + 1).split("|");
 				wynik = rodzajUprArr[idx_rodzaj_upr];
 			}
 		}
-		alert(wynik);
 		return wynik;
 	}
 }

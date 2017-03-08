@@ -716,3 +716,12 @@
 [19-Feb-2015 06:06:33 UTC] PHP Warning:  pg_connect(): Unable to connect to PostgreSQL server: FATAL:  database &quot;ROD_Gliwice&quot; does not exist in /dokumenty/http/html/RODGliwice/RODGliwice/jsonTreeOgr.php on line 7
 [13-Feb-2016 10:29:58 UTC] PHP Warning:  imagejpeg(dane/zdjecia/7.jpg): failed to open stream: Permission denied in /dokumenty/dysk1/http_data/www/html/RODGliwice/RODGliwice/wgrajFoty1.php on line 74
 [13-Feb-2016 10:30:00 UTC] PHP Warning:  imagejpeg(dane/zdjecia/7.jpg): failed to open stream: Permission denied in /dokumenty/dysk1/http_data/www/html/RODGliwice/RODGliwice/wgrajFoty1.php on line 74
+[06-Mar-2017 09:25:30 Europe/Berlin] PHP Notice:  Undefined index: bar in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:25:39 Europe/Berlin] PHP Notice:  Undefined index: bar in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:25:43 Europe/Berlin] PHP Notice:  Undefined index: bar in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:26:00 Europe/Berlin] PHP Notice:  Undefined index: bar in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:26:29 Europe/Berlin] PHP Notice:  Undefined index: bar in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:46:57 Europe/Berlin] PHP Notice:  Undefined index: json in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:47:06 Europe/Berlin] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 20
+[06-Mar-2017 09:50:33 Europe/Berlin] PHP Notice:  Undefined index: json in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
+[06-Mar-2017 09:50:35 Europe/Berlin] PHP Notice:  Undefined index: json in C:\xampp\htdocs\PZD_Poznan2\edycjabazy.php on line 18
